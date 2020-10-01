@@ -15,9 +15,11 @@ header {
 footer {
     justify-content: space-between;
 }
-article {
+.articleBox {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-content: space-betweend;
+    height: 25rem;
+    width: 30rem;
 }
