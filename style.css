@@ -22,23 +22,28 @@ footer {
 .contact {
     margin-right: 0;
 }
-.articleBox {
+a {
+    text-decoration: none;
+    color: black;
+}
+ul {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     margin: auto 5%;
 }
-.prodBox {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: 25rem;
-    height: 22rem;
-    border: violet solid 0.5rem;
+li {
+    border: 1px solid black;
+    max-width: 300px;
+    max-height: 500px;
+    margin: 2rem;
+    list-style: none;
 }
-article {
-    height: 25rem;
-    width: 30rem;
-    align-content: space-betweend;
+.imagesProd {
+    max-width: 300px;
+    min-height: 200px;
+}
+.artName {
+    text-align: center;
 }
