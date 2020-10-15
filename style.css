@@ -47,3 +47,16 @@ li {
 .artName {
     text-align: center;
 }
+.description {
+    text-align: justify;
+    margin: 10pxs;
+}
+.artPrices {
+    text-align: right;
+}
+.imgLogo {
+    background: rgb(207,126,70);
+    background: linear-gradient(114deg, rgba(207,126,70,1) 37%, rgba(172,107,167,1) 48%, rgba(143,91,253,1) 56%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}

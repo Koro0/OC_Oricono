@@ -17,7 +17,7 @@ fetch('http://localhost:3000/api/teddies')
   .then((data) => {
     // Work with JSON data here
     console.log(data)
-    affiche(data);
+    shows(data);
   })
   .catch((err) => {
     // Do something for an error here
@@ -25,26 +25,38 @@ fetch('http://localhost:3000/api/teddies')
   })
 
 
-function affiche(data) {
+function shows(data) {
   let ul = document.createElement('ul');
-
+  let articleLi = "";
   for(i=0; i<data.length; i++) {
     let li = document.createElement('li');
-    let articleImg = '<a href="./produit.html"><img class="imagesProd" scr="';
-    let articleSelect = "<select>"; //Liste deroulante
-    let articleName = '<a href="./produit.html"><h2 class="artName">' + data[i].name + '</h2></a>'; //nom des produits
-    let articleDescrip = '<p>' + data[i].description +'</p>'; //Descriptions des articles
-    let articlePrice = '<p>' + data[i].price + ' €' + '</p>'; //Prix de chaque produits
+    let articleImg = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><img class="imagesProd" scr="';
+    let articleSelect = "<select>"; //Liste deroulante; variable select
+    let articleName = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><h2 class="artName">' + data[i].name + '</h2></a>'; //nom des produits
+    let articleDescrip = '<p class="description">' + data[i].description +'</p>'; //Descriptions des articles
+    let articlePrice = '<p class="artPrices">' + data[i].price + ' €' + '</p>'; //Prix de chaque produits
+    let btnAddArticle = '<button>'; //bouton ajouter produit
+    
+    
     //parcourir le tableu couleur data[i].color
     for(j=0; j<data[i].colors.length; j++) {
-      //creer variable select
+      //parcourir tous les couleurs de chaque produit
       articleSelect += "<option>" + data[i].colors[j] + "</option>"; 
     }
     articleSelect += "</select>";
     articleImg += data[i].imageUrl + '" alt="l\'image du produit"></a>';
     li.innerHTML = articleImg  + articleName + articleDescrip /*+ articleSelect*/ + articlePrice;
-
     ul.appendChild(li);
   }
-  articleBox.appendChild(ul);
+  
+  articlesBox.appendChild(ul);
 }
+/*
+let lastId = ""; //dernier article selectionné
+let allLink = document.getElementsByClassName("prodLink"); //recupere les liens de redirection article
+    console.log(allLink);
+allLink.addEventListener("click", function(e){  
+  affiche(data);
+});         */  
+let articleUrl = window.location.search.substring(3);
+console.log(articleUrl);
