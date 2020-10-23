@@ -4,7 +4,7 @@ html {
 }
 body {
     height: 90%;
-    width: 100%;
+    background-color: rgb(243, 233, 241);
 }
 a {
     text-decoration: none;
@@ -12,9 +12,24 @@ a {
 header {
     text-align: center;
 }
+h1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.basketLogo
 footer {
     justify-content: space-between;
     
+}
+footer div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+footer div a {
+    margin: 10px;
 }
 .mention {
     margin-left: 0;
@@ -25,6 +40,7 @@ footer {
 a {
     text-decoration: none;
     color: black;
+    margin: 10px;
 }
 ul {
     display: flex;
@@ -35,13 +51,14 @@ ul {
 }
 li {
     border: 1px solid black;
-    max-width: 300px;
+    max-width: 400px;
     max-height: 500px;
     margin: 2rem;
     list-style: none;
+    background-color: whitesmoke;
 }
 .imagesProd {
-    max-width: 300px;
+    min-width: 400px;
     min-height: 200px;
 }
 .artName {
@@ -49,10 +66,11 @@ li {
 }
 .description {
     text-align: justify;
-    margin: 10pxs;
+    margin: 10px;
 }
 .artPrices {
     text-align: right;
+    margin: 0 10px 10px;
 }
 .imgLogo {
     background: rgb(207,126,70);
