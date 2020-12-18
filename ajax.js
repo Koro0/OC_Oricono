@@ -30,7 +30,7 @@ function shows(data) {
   let articleLi = "";
   for(i=0; i<data.length; i++) {
     let li = document.createElement('li');
-    let articleImg = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><img class="imagesProd" scr="';
+    let articleImg = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><img class="imagesProd" src="';
     let articleSelect = "<select>"; //Liste deroulante; variable select
     let articleName = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><h2 class="artName">' + data[i].name + '</h2></a>'; //nom des produits
     let articleDescrip = '<p class="description">' + data[i].description +'</p>'; //Descriptions des articles

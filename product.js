@@ -1,45 +1,39 @@
-//Crrer un requete pour recuperer les produits para rapport aux clés
+//Crrer un requete pour recuperer les produits par rapport aux clés
 fetch('http://localhost:3000/api/teddies')
   .then((response) => {
     return response.json()
   })
   .then((data) => {
     // Work with JSON data here
-    console.log(data)
+    
     showsArticle(data)
-    btnAddSelect.addEventListener(click, function addSelectArticle() {
-      
-    } )
   })
   .catch((err) => {
     // Do something for an error here
     console.log(err);
-  })/*
-  function showArticle() {
-      let articleUrl = windows.location.href.serchParams.get("id"):
-      console.log(articleUrl);
-      
-  }
-  showArticle();*/
+  })
+
+  
 let articleUrl = new URL(window.location.href);
 let articleId = articleUrl.searchParams.get("id")
- console.log(articleId);
+  console.log(articleId);
 let btnAddSelect = document.getElementsByClassName('addSelect');
 //let articleBasket = 
-
- function showsArticle(data) {
+let selectArticle = localStorage;
+console.log(selectArticle);
+// variable localStorage pour basket pour les articles ajoutées
+  function showsArticle(data) {
     let ul = document.createElement('ul');
-    
+    //console.log(data);
 
-    
-      for(i=0; i<data.length; i++) {
+    for(i=0; i<data.length; i++) {
         let li = document.createElement('li');
-        let articleImg = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><img class="imagesProd" scr="';
-        let articleSelect = "<select>"; //Liste deroulante; variable select
+        let articleImg = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><img class="imagesProd" src="';
+        let articleSelect = '<select id="liste">'; //Liste deroulante; variable select
         let articleName = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><h2 class="artName">' + data[i].name + '</h2></a>'; //nom des produits
         let articleDescrip = '<p class="description">' + data[i].description +'</p>'; //Descriptions des articles
         let articlePrice = '<p class="artPrices">' + data[i].price + ' €' + '</p>'; //Prix de chaque produits
-        let btnAddArticle = '<button class="addSelect" value="data[i]._id">Ajouter</button>'; //bouton ajouter produit
+        let btnAddArticle = '<button id="local" class="addSelect" value="articleId">Ajouter</button>'; //bouton ajouter produit
         if(articleId == data[i]._id) {
         
           //parcourir le tableu couleur data[i].color
@@ -47,19 +41,52 @@ let btnAddSelect = document.getElementsByClassName('addSelect');
             //parcourir tous les couleurs de chaque produit
             articleSelect += "<option>" + data[i].colors[j] + "</option>"; 
           }
-          articleSelect += "</select>";
-          articleImg += data[i].imageUrl + '" alt="l\'image du produit"/></a>';
+        articleSelect += "</select>";
+        articleImg += data[i].imageUrl + '" alt="l\'image du produit"/></a>';
+        
+        
+        li.innerHTML = articleImg  + articleName + articleDescrip + articleSelect + articlePrice;
+        // li.innerHTML = articleImg  + articleName + articleDescrip + articleSelect + articlePrice + btnAddArticle;
+        
+        ul.appendChild(li);
+        let butt = li.appendChild(document.createElement("button"));
+        butt.innerHTML = btnAddArticle;
+        let panier = [{}]
+
+        butt.addEventListener('click', function(){
           
-          console.log(btnAddArticle);
-          li.innerHTML = articleImg  + articleName + articleDescrip + articleSelect + articlePrice + btnAddArticle;
+          let opt = document.getElementById("liste").options[document.getElementById('liste').selectedIndex].text;
+          //console.log(opt); //option selectionner
           
-          ul.appendChild(li);
+          panier.push({
+            "id" : articleUrl.searchParams.get("id"),
+            "quantité" : 1,
+            "option" : opt
+          })
+          console.log(panier);
+          localStorage.setItem("id", JSON.stringify(panier));
+          console.log(localStorage); 
+          
+          //let panierLocal = JSON.parse(localStorage.getItem("id", JSON.stringify(panier)));
+          //console.log(panierLocal);
+          //l&sl&sconsole.log(localStorage);
+          // let local = localStorage.getItem('id'); // id : 564-879-458
+          // let idarray = local.split('-');
+          console.log(panier.length);
+          //document.getElementsByClassName("basketCard").innerHTML = panier.length;
+        }, false);
+        
       }
     } 
     
     
     articleBox.appendChild(ul);
   }
-
+/*
   //function pour enregistrer les article ajouter
-  
+  function addSelectArticle() {
+    selectArticle += articleId ;
+    console.log(selectArticle);
+    document.getElementById(basketCard).innerHTML = selectArticle.length;
+  }
+  */
