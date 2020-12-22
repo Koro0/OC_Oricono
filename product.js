@@ -51,28 +51,46 @@ console.log(selectArticle);
         ul.appendChild(li);
         let butt = li.appendChild(document.createElement("button"));
         butt.innerHTML = btnAddArticle;
-        let panier = [{}]
-
+        let panier = [];
+        let paniers = false;
         butt.addEventListener('click', function(){
           
           let opt = document.getElementById("liste").options[document.getElementById('liste').selectedIndex].text;
           //console.log(opt); //option selectionner
+          if(localStorage["id"]) { //si le localStorage posséde deja du contenus
+            //panier = [];
+            //panier.push(JSON.parse(localStorage["id"]));
+            paniers = JSON.parse(localStorage["id"]); //objet recuperer  sur localStorage
+            console.log(paniers);
+            panier.push(paniers);
+            panier.push({
+              "id" : articleUrl.searchParams.get("id"),
+              "quantité" : 1,
+              "option" : opt
+            })
+            localStorage.clear();
+            localStorage.setItem("id", JSON.stringify(panier));
+            console.log("plein");
+            console.log(panier);
+          } else {
+            
+            panier.push({
+              "id" : articleUrl.searchParams.get("id"),
+              "quantité" : 1,
+              "option" : opt
+            })
+            localStorage.setItem("id", JSON.stringify(panier));
+            console.log("vide");
+          }
+
           
-          panier.push({
-            "id" : articleUrl.searchParams.get("id"),
-            "quantité" : 1,
-            "option" : opt
-          })
-          console.log(panier);
-          localStorage.setItem("id", JSON.stringify(panier));
-          console.log(localStorage); 
+          //console.log(panier);
           
-          //let panierLocal = JSON.parse(localStorage.getItem("id", JSON.stringify(panier)));
-          //console.log(panierLocal);
-          //l&sl&sconsole.log(localStorage);
-          // let local = localStorage.getItem('id'); // id : 564-879-458
+          //console.log(localStorage); 
+
+// let local = localStorage.getItem('id'); // id : 564-879-458
           // let idarray = local.split('-');
-          console.log(panier.length);
+          //console.log(object.keys(localStorage.id.length);
           //document.getElementsByClassName("basketCard").innerHTML = panier.length;
         }, false);
         
