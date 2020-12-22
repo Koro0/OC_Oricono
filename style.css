@@ -84,18 +84,34 @@ li {
     list-style: none;
     background-color: whitesmoke;
 }
+.ArtOrders { 
+    /* li for Orders */
+    display: flex;
+    max-width: 90%;
+}
 .imagesProd {
     max-width: 400px;
     max-height: 200px;
 }
+.imgOrder {
+    max-width: 200px;
+    max-height: 150px;
+}
 .artName {
     text-align: center;
+}
+.artNameOrder {
+    text-align: justify;
 }
 .description {
     text-align: justify;
     margin: 10px;
 }
 .artPrices {
+    text-align: right;
+    margin: 0 10px 10px;
+}
+.artPricesOrder {
     text-align: right;
     margin: 0 10px 10px;
 }

@@ -51,47 +51,35 @@ console.log(selectArticle);
         ul.appendChild(li);
         let butt = li.appendChild(document.createElement("button"));
         butt.innerHTML = btnAddArticle;
-        let panier = [];
-        let paniers = false;
+        let panier;
+        //let paniers = false;
         butt.addEventListener('click', function(){
-          
+          let sameArticle = false;
           let opt = document.getElementById("liste").options[document.getElementById('liste').selectedIndex].text;
           //console.log(opt); //option selectionner
           if(localStorage["id"]) { //si le localStorage posséde deja du contenus
-            //panier = [];
-            //panier.push(JSON.parse(localStorage["id"]));
-            paniers = JSON.parse(localStorage["id"]); //objet recuperer  sur localStorage
-            console.log(paniers);
-            panier.push(paniers);
-            panier.push({
-              "id" : articleUrl.searchParams.get("id"),
-              "quantité" : 1,
-              "option" : opt
-            })
-            localStorage.clear();
-            localStorage.setItem("id", JSON.stringify(panier));
+            panier = JSON.parse(localStorage["id"]); //objet recuperer  sur localStorage
             console.log("plein");
-            console.log(panier);
-          } else {
-            
-            panier.push({
-              "id" : articleUrl.searchParams.get("id"),
-              "quantité" : 1,
-              "option" : opt
-            })
-            localStorage.setItem("id", JSON.stringify(panier));
+          } else { //Creer un tableau
+            panier = [];
             console.log("vide");
           }
-
+          for(k=0; k<panier.length; k++) {//boucle dans le tableau panier
+            if(panier[k].id == articleUrl.searchParams.get("id") && panier[k].option == opt) {// si cet article est deja present dans le panier et qui a les meme option
+              panier[k].quantite += 1; //dans ce cas, on ajoute juste la quantité en plus
+              sameArticle = true; //puis on change le boolean en "true"
+            }
+          }
+          if(sameArticle == false) { // dans le condition où le boolean est "false"(produit non existent dans panier), on push le produit
+            panier.push({
+              "id" : articleUrl.searchParams.get("id"),
+              "quantite" : 1,
+              "option" : opt
+            })
+          }
           
-          //console.log(panier);
           
-          //console.log(localStorage); 
-
-// let local = localStorage.getItem('id'); // id : 564-879-458
-          // let idarray = local.split('-');
-          //console.log(object.keys(localStorage.id.length);
-          //document.getElementsByClassName("basketCard").innerHTML = panier.length;
+          localStorage.setItem("id", JSON.stringify(panier));
         }, false);
         
       }
@@ -100,11 +88,3 @@ console.log(selectArticle);
     
     articleBox.appendChild(ul);
   }
-/*
-  //function pour enregistrer les article ajouter
-  function addSelectArticle() {
-    selectArticle += articleId ;
-    console.log(selectArticle);
-    document.getElementById(basketCard).innerHTML = selectArticle.length;
-  }
-  */
