@@ -50,13 +50,8 @@ function shows(data) {
   }
   
   articlesBox.appendChild(ul);
+  document.getElementsByClassName("basketCard").innerHTML = JSON.parse(localStorage["number"]);
 }
-/*
-let lastId = ""; //dernier article selectionné
-let allLink = document.getElementsByClassName("prodLink"); //recupere les liens de redirection article
-    console.log(allLink);
-allLink.addEventListener("click", function(e){  
-  affiche(data);
-});         */  
+
 let articleUrl = window.location.search.substring(3);
 console.log(articleUrl);

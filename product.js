@@ -16,7 +16,7 @@ fetch('http://localhost:3000/api/teddies')
   
 let articleUrl = new URL(window.location.href);
 let articleId = articleUrl.searchParams.get("id")
-  console.log(articleId);
+  //console.log(articleId);
 let btnAddSelect = document.getElementsByClassName('addSelect');
 //let articleBasket = 
 let selectArticle = localStorage;
@@ -27,14 +27,14 @@ console.log(selectArticle);
     //console.log(data);
 
     for(i=0; i<data.length; i++) {
-        let li = document.createElement('li');
-        let articleImg = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><img class="imagesProd" src="';
-        let articleSelect = '<select id="liste">'; //Liste deroulante; variable select
-        let articleName = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><h2 class="artName">' + data[i].name + '</h2></a>'; //nom des produits
-        let articleDescrip = '<p class="description">' + data[i].description +'</p>'; //Descriptions des articles
-        let articlePrice = '<p class="artPrices">' + data[i].price + ' €' + '</p>'; //Prix de chaque produits
-        let btnAddArticle = '<button id="local" class="addSelect" value="articleId">Ajouter</button>'; //bouton ajouter produit
-        if(articleId == data[i]._id) {
+      let li = document.createElement('li');
+      let articleImg = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><img class="imagesProd" src="';
+      let articleSelect = '<select id="liste">'; //Liste deroulante; variable select
+      let articleName = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><h2 class="artName">' + data[i].name + '</h2></a>'; //nom des produits
+      let articleDescrip = '<p class="description">' + data[i].description +'</p>'; //Descriptions des articles
+      let articlePrice = '<p class="artPrices">' + data[i].price + ' €' + '</p>'; //Prix de chaque produits
+      let btnAddArticle = '<button id="local" class="addSelect" value="articleId">Ajouter</button>'; //bouton ajouter produit
+      if(articleId == data[i]._id) {
         
           //parcourir le tableu couleur data[i].color
           for(j=0; j<data[i].colors.length; j++) {
@@ -52,7 +52,7 @@ console.log(selectArticle);
         let butt = li.appendChild(document.createElement("button"));
         butt.innerHTML = btnAddArticle;
         let panier;
-        //let paniers = false;
+        let numberArticle = [];
         butt.addEventListener('click', function(){
           let sameArticle = false;
           let opt = document.getElementById("liste").options[document.getElementById('liste').selectedIndex].text;
@@ -69,6 +69,7 @@ console.log(selectArticle);
               panier[k].quantite += 1; //dans ce cas, on ajoute juste la quantité en plus
               sameArticle = true; //puis on change le boolean en "true"
             }
+            
           }
           if(sameArticle == false) { // dans le condition où le boolean est "false"(produit non existent dans panier), on push le produit
             panier.push({
@@ -77,14 +78,16 @@ console.log(selectArticle);
               "option" : opt
             })
           }
-          
-          
           localStorage.setItem("id", JSON.stringify(panier));
+          numberArticle = panier.length;
+          localStorage.setItem("number", JSON.stringify(numberArticle));
+          
         }, false);
         
       }
     } 
-    
-    
     articleBox.appendChild(ul);
+    document.getElementsByClassName("basketCard").innerHTML = JSON.parse(localStorage["number"]);
+    //changer la valeur sur le panier
+    
   }
