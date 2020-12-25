@@ -82,6 +82,10 @@ li {
     list-style: none;
     background-color: whitesmoke;
 }
+#none {
+    justify-content: center;
+    text-align: center;
+}
 .ArtOrdersLi { 
     /* li for Orders */
     display: flex;
@@ -121,4 +125,15 @@ li {
     background: linear-gradient(114deg, rgba(207,126,70,1) 37%, rgba(172,107,167,1) 48%, rgba(143,91,253,1) 56%);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+}
+#formulaire {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.totalAllArticle {
+    border: aliceblue solid;
+    background: aliceblue;
+    justify-content: center;
+    text-align: center;
 }

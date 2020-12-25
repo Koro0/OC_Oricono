@@ -5,6 +5,7 @@ fetch('http://localhost:3000/api/teddies')
   .then((data) => {
     // Work with JSON data here
     showsOrder(data)
+    
   })
   .catch((err) => {
     // Do something for an error here
@@ -18,9 +19,9 @@ fetch('http://localhost:3000/api/teddies')
     let ul = document.createElement('ul');
     ul.className = "ArtOrdersUl";
     let orders = JSON.parse(localStorage["id"]);
-    
-    console.log(orders);
-    
+    let liSomme = document.createElement('div');
+    liSomme.className = "totalAllArticle";
+    let totalAllArticle = 0;
     //for(i=0; i<data.length; i++) {
       //console.log('1');//test
     if(localStorage["number"] > 0) {
@@ -47,56 +48,38 @@ fetch('http://localhost:3000/api/teddies')
             let sommeArticle = "<p> Total : " + orders[j].quantite * data[i].price + " € </p>";
             let articleColor = "<p> Option : " + orders[j].option + "</p>";
             //let deleteArticle = orders[j]
-            
+            totalAllArticle += orders[j].quantite * data[i].price;
 
             li.innerHTML = articleImg  + articleName + articleColor + articlePrice + quantite + sommeArticle;
             ul.appendChild(li)
             li.appendChild(deleteArticle)
             console.log(j, orders[j])
             let temp = j;
-            deleteArticle.addEventListener('click', function(){
-              orders.splice(temp, 1);
-              localStorage.setItem("id", JSON.stringify(orders));
-              localStorage.setItem("number", orders.length);
-              document.location.reload();
-              console.log(orders);
-              console.log(localStorage);
+            deleteArticle.addEventListener('click', function(){ //evenement click
+              orders.splice(temp, 1); // supression du produit dans le tableau
+              localStorage.setItem("id", JSON.stringify(orders)); //actualiser le contenu dans le localStorage
+              localStorage.setItem("number", orders.length); // actualiser le nombre des produits 
+              
+              document.location.reload();// rafraichir/actualiser la page
+              //console.log(orders);
+              //console.log(localStorage);
             });
           } 
         }
       }
     } else {
-      let aucunArticle = "<h2> Aucun produit n'a était ajouter </h2>";
+      let aucunArticle = '<h2 id="none"> Aucun produit ';
+      aucunArticle +=  "n'a était ajouter </h2>";
       let div = document.createElement('div');
       div.innerHTML  = aucunArticle;
-
+      articleOrder.appendChild(div);
     }
-    
-    document.getElementsByClassName("basketCard").innerHTML = JSON.parse(localStorage["number"]);
+    liSomme.innerHTML = "Prix total des produits : " + totalAllArticle;
+    ul.appendChild(liSomme);
+    console.log(totalAllArticle);
+    document.getElementsByClassName("basketCard").innerHTML = JSON.parse(localStorage["number"]); //afficher le nombre d'article dans le panier
     articleOrder.appendChild(ul);
     
   }
   
-
-    /*for(j=0, j<localS.length, j++) {
-      if(localS.length > 0) {
-        for(i=0; i<data.length; i++) {
-          let li = document.createElement('li');
-          let articleImg = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><img class="imagesProd" src="';
-          
-          let articleName = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><h2 class="artName">' + data[i].name + '</h2></a>'; //nom des produits
-          let articlePrice = '<p class="artPrices">' + data[i].price + ' €' + '</p>'; //Prix de chaque produits
-
-          if(data[i].id = localS['id']) {
-            li.innerHTML = articleImg  + articleName + articleDescrip + articleSelect + articlePrice;
-          }
-        } else {
-          li.innerHTML  = "Aucun produit ajouter"
-        }
-        ul.appendChild(li);
-      }
-    */
-    
-    
-    
   
