@@ -22,6 +22,7 @@ let btnAddSelect = document.getElementsByClassName('addSelect');
 let selectArticle = localStorage;
 console.log(selectArticle);
 // variable localStorage pour basket pour les articles ajoutées
+document.getElementById("basketCard").innerHTML = localStorage["number"];
   function showsArticle(data) {
     let ul = document.createElement('ul');
     //console.log(data);
@@ -79,15 +80,15 @@ console.log(selectArticle);
             })
           }
           localStorage.setItem("id", JSON.stringify(panier));
-          numberArticle = panier.length;
-          localStorage.setItem("number", JSON.stringify(numberArticle));
           
+          localStorage.setItem("number", panier.length);
+          document.location.reload();
         }, false);
         
       }
     } 
     articleBox.appendChild(ul);
-    document.getElementsByClassName("basketCard").innerHTML = JSON.parse(localStorage["number"]);
+    
     //changer la valeur sur le panier
     
   }

@@ -1,15 +1,4 @@
 
-
-/*// Creer une requete est assigner le "new XMLHttpRequest"
-var request = new XMLHttpRequest();
-
-//ouvrir la connection avec le server
-request.open('GET', 'http://localhost:3000/api/teddies');
-
-//Envoi de la requete
-request.send();
-*/
-
 fetch('http://localhost:3000/api/teddies')
   .then((response) => {
     return response.json()
@@ -24,7 +13,7 @@ fetch('http://localhost:3000/api/teddies')
     console.log(err);
   })
 
-
+  document.getElementById("basketCard").innerHTML = localStorage["number"];
 function shows(data) {
   let ul = document.createElement('ul');
   let articleLi = "";
@@ -34,7 +23,7 @@ function shows(data) {
     let articleSelect = "<select>"; //Liste deroulante; variable select
     let articleName = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><h2 class="artName">' + data[i].name + '</h2></a>'; //nom des produits
     let articleDescrip = '<p class="description">' + data[i].description +'</p>'; //Descriptions des articles
-    let articlePrice = '<p class="artPrices">' + data[i].price + ' €' + '</p>'; //Prix de chaque produits
+    let articlePrice = '<p>' + data[i].price + ' €' + '</p>'; //Prix de chaque produits
     let btnAddArticle = '<button>'; //bouton ajouter produit
     
     
@@ -50,7 +39,7 @@ function shows(data) {
   }
   
   articlesBox.appendChild(ul);
-  document.getElementsByClassName("basketCard").innerHTML = JSON.parse(localStorage["number"]);
+  //document.getElementsByClassName("basketCard").innerHTML = JSON.parse(localStorage["number"]);
 }
 
 let articleUrl = window.location.search.substring(3);
