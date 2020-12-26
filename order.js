@@ -23,11 +23,11 @@ fetch('http://localhost:3000/api/teddies')
       //console.log('1');//test
       if(orders == []) {
         li.innerHTML  = "Aucun produit n'a était ajouter"
-      } else if(orders != []) {
+      }
       for(j=0; j<orders.length; j++) {
         //console.log("2"); //test
         if(orders[j].id == data[i]._id) { //
-          //console.log("true");
+          //console.slog("true");
           let articleImg = '<a class="prodOrder" href="./product.html?id=' + data[i]._id + '"><img class="imgOrder" src="' + data[i].imageUrl + '" alt="l\'image du produit"/></a>';
           //console.log("2");
           let articleName = '<a class="prodOrder" href="./product.html?id=' + data[i]._id + '"><h2 class="artNameOrder">' + data[i].name + '</h2></a>'; //nom des produits
@@ -40,7 +40,7 @@ fetch('http://localhost:3000/api/teddies')
           li.innerHTML = articleImg  + articleName + articlePrice + quantite + sommeArticle;
 
         } 
-      }
+      
       }
       ul.appendChild(li)
     }
