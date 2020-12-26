@@ -21,7 +21,7 @@
             <div>
                 <a href="./order.html">
                     <i class="fas fa-shopping-basket basketLogo"></i>
-                    <span class="basketCard">0</span>
+                    <span id="basketCard" class="basketCard">0</span>
                 </a>
             </div>
         </h1>
@@ -31,6 +31,19 @@
         <p>Voici la liste de votre panier :</p>
         <div id="articleOrders">
 
+        </div>
+        <div id="formulaire">
+            <form action="post">
+                <label>First Name</label> <input type="text" name="firstName" placeholder="Ex : Robert" size="30" maxlength="5" required/>
+                <label>Last Name</label> <input type="text" name="LastName" placeholder="Ex : DUPONT" size="30" maxlength="5" required/>
+                <br />
+                <label>Adresse</label> <input type="text" name="adresse" placeholder="1 rue de paris" required/>
+                <br />
+                <label>City</label> <input type="text" name="city" placeholder="75-Paris" required/>
+                <br />
+                <label>Email</label> <input type="email" name="email" placeholder="exemple@exemple.com" required/>
+                <input type="submit" value="Valider la commande">
+            </form>
         </div>
     </main>
     <footer>

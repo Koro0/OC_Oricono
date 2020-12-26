@@ -21,14 +21,7 @@ header {
 #headerLogo {
     flex-grow: 2;
 }
-.basketCard{
-    position: absolute;
-    top: -10px;
-    background: yellow;
-    padding: 0 2px;
-    right: -2px;
-    border-radius: 40%;
-}
+
 .basketCard{
     top: -5px;
     position: absolute;
@@ -76,6 +69,11 @@ ul {
     justify-content: center;
     margin: auto 5%;
 }
+.ArtOrdersUl {
+    display: block;
+    justify-content: center;
+    margin: auto 5%;
+}
 li {
     border: 1px solid black;
     max-width: 400px;
@@ -84,10 +82,17 @@ li {
     list-style: none;
     background-color: whitesmoke;
 }
-.ArtOrders { 
+#none {
+    justify-content: center;
+    text-align: center;
+}
+.ArtOrdersLi { 
     /* li for Orders */
     display: flex;
+    flex-direction: row;
+    flex-grow: 2;
     max-width: 90%;
+    justify-content: space-around;
 }
 .imagesProd {
     max-width: 400px;
@@ -107,17 +112,28 @@ li {
     text-align: justify;
     margin: 10px;
 }
-.artPrices {
+/* .artPrices {
     text-align: right;
     margin: 0 10px 10px;
-}
-.artPricesOrder {
+} */
+/* .artPricesOrder {
     text-align: right;
     margin: 0 10px 10px;
-}
+} */
 .imgLogo {
     background: rgb(207,126,70);
     background: linear-gradient(114deg, rgba(207,126,70,1) 37%, rgba(172,107,167,1) 48%, rgba(143,91,253,1) 56%);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+}
+#formulaire {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.totalAllArticle {
+    border: aliceblue solid;
+    background: aliceblue;
+    justify-content: center;
+    text-align: center;
 }
