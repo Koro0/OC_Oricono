@@ -81,5 +81,25 @@ fetch('http://localhost:3000/api/teddies')
     articleOrder.appendChild(ul);
     
   }
+
+  let ordersId = [];
+  let valid = document.getElementById("validCommand");
+  valid.addEventListener('click', function(){
+    ordersId.push({
+      "id" :  makeid(25),
+      "articles" : localStorage['id'],
+      "customer" : 1
+    });
+    
+  });
   
+  function makeid(length) { //function creation de clé de commande
+    let result           = '';
+    let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let charactersLength = characters.length;
+    for (i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+      return result;
+  }
   

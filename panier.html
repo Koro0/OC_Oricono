@@ -19,7 +19,7 @@
                 </a>
             </div>
             <div>
-                <a href="./order.html">
+                <a href="./panier.html">
                     <i class="fas fa-shopping-basket basketLogo"></i>
                     <span id="basketCard" class="basketCard">0</span>
                 </a>
@@ -32,17 +32,18 @@
         <div id="articleOrders">
 
         </div>
+        <p>Pour pouvoir valider votre commande, merci de remplir tous les champs.</p>
         <div id="formulaire">
-            <form action="post">
-                <label>First Name</label> <input type="text" name="firstName" placeholder="Ex : Robert" size="30" maxlength="5" required/>
-                <label>Last Name</label> <input type="text" name="LastName" placeholder="Ex : DUPONT" size="30" maxlength="5" required/>
+            <form action="post" action="./confirmation.html">
+                <label>First Name</label> <input id="cusFirstName" type="text" name="firstName" placeholder="Ex : Robert" size="30" maxlength="5" required/>
+                <label>Last Name</label> <input id="cusLastName" type="text" name="LastName" placeholder="Ex : DUPONT" size="30" maxlength="5" required/>
                 <br />
-                <label>Adresse</label> <input type="text" name="adresse" placeholder="1 rue de paris" required/>
+                <label>Adresse</label> <input id="cusAddress" type="text" name="adresse" placeholder="1 rue de paris" required/>
                 <br />
-                <label>City</label> <input type="text" name="city" placeholder="75-Paris" required/>
+                <label>City</label> <input id="cusLive" type="text" name="city" placeholder="75-Paris" required/>
                 <br />
-                <label>Email</label> <input type="email" name="email" placeholder="exemple@exemple.com" required/>
-                <input type="submit" value="Valider la commande">
+                <label>Email</label> <input id="cusEmail" type="email" name="email" placeholder="exemple@exemple.com" required/>
+                <input type="submit" value="Valider la commande" id="validCommand">
             </form>
         </div>
     </main>
@@ -52,6 +53,6 @@
             <div class="contact"><a href="mailto:contact@oricono.com">Contactez nous</a></div>
         </nav>
     </footer>
-    <script src="order.js"></script>
+    <script src="./ajax/order.js"></script>
 </body>
 </html>
