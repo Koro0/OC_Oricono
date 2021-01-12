@@ -98,19 +98,21 @@ fetch('http://localhost:3000/api/teddies')
   }
 
 
-  let linkValid = "./confirmation.html?id=" + makeid(25); 
+  let linkValid = "./confirmation.html?id=" + makeid(10); 
   document.querySelector('form').setAttribute('action', linkValid);
   ///////////////////recuperer les inputs du formulaire///////////
-  let firstName = document.getElementById('cusFirstName');
-  let lastName = document.getElementById('cusLastName');
-  let userAddress = document.getElementById('cusAddress');
-  let userCity = document.getElementById('cusLive');
-  let userEmail = document.getElementById('cusEmail');
-  let formValid = document.getElementById('validCommand');
+  const firstName = document.getElementById('cusFirstName');
+  const lastName = document.getElementById('cusLastName');
+  const userAddress = document.getElementById('cusAddress');
+  const userCity = document.getElementById('cusLive');
+  const userEmail = document.getElementById('cusEmail');
+  const formValid = document.getElementById('validCommand');
 
-  formValid.addEventListener('click', validFirstName);
+  /////////////////////////////Event sur click butt valider achat du formulaire/////////////////
+  formValid.addEventListener('click', validForm);
 
-  function validFirstName(event) {
+  ///////////////////////////function verification des champs du formulaire///////////////////////////////////
+  function validForm(event) {
     //si le champ firstName est vide
     if (firstName.validity.valueMissing) {
       event.preventDefault();
@@ -156,9 +158,9 @@ fetch('http://localhost:3000/api/teddies')
     } else {
       document.getElementById('errorEmail').textContent = "";
     }
+
   }; 
 
-  
 /*
 /////////////////////////// Verifier le champ Email//////////////////
 userEmail.addEventListener('blur', function (e) {

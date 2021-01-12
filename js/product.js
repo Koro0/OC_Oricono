@@ -16,9 +16,9 @@ fetch('http://localhost:3000/api/teddies')
   // recupere le Id du produit 
 let articleUrl = new URL(window.location.href);
 let articleId = articleUrl.searchParams.get("id");
-console.log(articleUrl, articleId);
+// console.log(articleUrl, articleId);
 let btnAddSelect = document.getElementsByClassName('addSelect');
-document.getElementById("basketCard").innerHTML = localStorage["number"];
+document.getElementById("basketCard").innerHTML = localStorage['number'];
 
 
 function showsArticle(data) {
@@ -44,7 +44,7 @@ function showsArticle(data) {
       
       
       li.innerHTML = articleImg  + articleName + articleDescrip + articleSelect + articlePrice;
-      // li.innerHTML = articleImg  + articleName + articleDescrip + articleSelect + articlePrice + btnAddArticle;
+      
       
       ul.appendChild(li);
       let butt = li.appendChild(document.createElement("button"));

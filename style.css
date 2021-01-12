@@ -17,6 +17,7 @@ header {
     position: sticky;
     top: 0;
     background-color: var(--main-bg-color);
+    z-index: 1;
 }
 #headerLogo {
     flex-grow: 2;
@@ -76,8 +77,8 @@ ul {
 }
 li {
     border: 1px solid black;
-    max-width: 400px;
-    max-height: 500px;
+    /* max-width: 400px;
+    max-height: 500px; */
     margin: 2rem;
     list-style: none;
     background-color: whitesmoke;
@@ -95,7 +96,7 @@ li {
     justify-content: space-around;
 }
 .imagesProd {
-    max-width: 400px;
+    max-width: 250px;
     max-height: 250px;
 }
 .imgOrder {
@@ -149,8 +150,18 @@ form {
     }
 
 }
+@media (max-width: 1146px) {
+    .imagesProd {
+        max-width: 200px;
+    }
+}
 @media (max-width: 680px) {
     .prodOrder {
         margin: 5px;
+    }
+}
+@media (max-width: 320px) {
+    .imagesProd {
+        max-width: 150px;
     }
 }

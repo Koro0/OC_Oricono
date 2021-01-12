@@ -17,11 +17,13 @@ fetch('http://localhost:3000/api/teddies')
 
   function shows(data) {
   let ul = document.createElement('ul');
+  ul.className = "justify-content-between";
   for(i=0; i<data.length; i++) {
     let li = document.createElement('li');
+    li.className ="row col-lg-4 col-md-6 col-sm-12";
     let articleImg = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><img class="imagesProd" src="';
     let articleSelect = "<select>"; //Liste deroulante; variable select
-    let articleName = '<a class="prodLink" href="./product.html?id=' + data[i]._id + '"><h3 class="artName">' + data[i].name + '</h3></a>'; //nom des produits
+    let articleName = '<a class="prodLink text-dark" href="./product.html?id=' + data[i]._id + '"><h3 class="artName">' + data[i].name + '</h3></a>'; //nom des produits
     let articleDescrip = '<p class="description">' + data[i].description +'</p>'; //Descriptions des articles
     let articlePrice = '<p class="indexPrice">' + data[i].price + ' €' + '</p>'; //Prix de chaque produits
     
