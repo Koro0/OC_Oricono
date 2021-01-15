@@ -82,24 +82,25 @@ fetch('http://localhost:3000/api/teddies')
     articleOrder.appendChild(ul);
   }
 
-  //let valid = document.getElementById("validCommand");
-  //let formValid = document.querySelector('form');
+  let valid = document.getElementById("validCommand");
+  
 
   
-  //creation de clé de commande
-  function makeid(length) { 
-    let result           = '';
-    let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let charactersLength = characters.length;
-    for (i = 0; i < length; i++ ) {
-       result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-      return result;
-  }
+  // //creation de clé de commande
+  // function makeid(length) { 
+  //   let result           = '';
+  //   let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  //   let charactersLength = characters.length;
+  //   for (i = 0; i < length; i++ ) {
+  //      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  //   }
+  //     return result;
+  // }
 
 
-  let linkValid = "./confirmation.html?id=" + makeid(10); 
-  document.querySelector('form').setAttribute('action', linkValid);
+   let linkValid = "http://localhost:3000/order"//?id= + makeid(10); 
+   document.querySelector('form').setAttribute('action', linkValid);
+
   ///////////////////recuperer les inputs du formulaire///////////
   const firstName = document.getElementById('cusFirstName');
   const lastName = document.getElementById('cusLastName');
@@ -107,6 +108,33 @@ fetch('http://localhost:3000/api/teddies')
   const userCity = document.getElementById('cusLive');
   const userEmail = document.getElementById('cusEmail');
   const formValid = document.getElementById('validCommand');
+console.log(userCity.value);
+let contact = [{
+  "first name " : firstName.value, 
+  "lastName " : lastName.value,
+  "address " : userAddress.value,
+  "city" : userCity.value,
+  "email" : userEmail.value
+}];
+
+function sendPost() {
+  var req = new XMLHttpRequest();
+// La requête est asynchrone lorsque le 3ème paramètre vaut true ou est absent
+  req.open("POST", "http://localhost:3000/order");
+  // Gestion de l'événement indiquant la fin de la requête
+  req.addEventListener("load", function () {
+      // Affiche la réponse reçue pour la requête
+      console.log(req.responseText);
+  });
+    req.send(); 
+    
+}
+
+
+
+
+
+
 
   /////////////////////////////Event sur click butt valider achat du formulaire/////////////////
   formValid.addEventListener('click', validForm);
