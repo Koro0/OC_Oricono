@@ -15,7 +15,7 @@ fetch('http://localhost:3000/api/teddies')
   //Affichier le nombre de produit dans le panier
   document.getElementById("basketCard").innerHTML = localStorage["number"];
 
-  // affichier tous les produits 
+  // affichier tous les produits du panier
   function showsOrder(data) {
     let articleOrder = document.getElementById("articleOrders");
     let ul = document.createElement('ul');
@@ -98,9 +98,9 @@ fetch('http://localhost:3000/api/teddies')
   // }
 
 
-   let linkValid = "http://localhost:3000/order"//?id= + makeid(10); 
-   document.querySelector('form').setAttribute('action', linkValid);
-
+  let linkValid = "http://localhost:3000/confimation.html"; 
+  document.querySelector('form').setAttribute('action', 'linkValid');
+  formValid.setAttribute('onclick', sendPost(); validForm());
   ///////////////////recuperer les inputs du formulaire///////////
   const firstName = document.getElementById('cusFirstName');
   const lastName = document.getElementById('cusLastName');
@@ -120,7 +120,7 @@ let contact = [{
 function sendPost() {
   var req = new XMLHttpRequest();
 // La requête est asynchrone lorsque le 3ème paramètre vaut true ou est absent
-  req.open("POST", "http://localhost:3000/order");
+  req.open("POST", "http://localhost:3000/api/order");
   // Gestion de l'événement indiquant la fin de la requête
   req.addEventListener("load", function () {
       // Affiche la réponse reçue pour la requête
@@ -129,11 +129,6 @@ function sendPost() {
     req.send(); 
     
 }
-
-
-
-
-
 
 
   /////////////////////////////Event sur click butt valider achat du formulaire/////////////////
