@@ -18,8 +18,6 @@ let articleUrl = new URL(window.location.href);
 let articleId = articleUrl.searchParams.get("id");
 // console.log(articleUrl, articleId);
 let btnAddSelect = document.getElementsByClassName('addSelect');
-document.getElementById("basketCard").innerHTML = localStorage['number'];
-
 
 function showsArticle(data) {
   let ul = document.createElement('ul');
@@ -55,8 +53,8 @@ function showsArticle(data) {
         let sameArticle = false;
         let opt = document.getElementById("liste").options[document.getElementById('liste').selectedIndex].text;
         //console.log(opt); //option selectionner
-        if(localStorage["id"]) { //si le localStorage posséde deja du contenus
-          panier = JSON.parse(localStorage["id"]); //objet recuperer  sur localStorage
+        if(localStorage["products"]) { //si le localStorage posséde deja du contenus
+          panier = JSON.parse(localStorage["products"]); //objet recuperer  sur localStorage
           //console.log("existe");
         } else { //sinon Creer un tableau
           panier = [];
@@ -76,7 +74,7 @@ function showsArticle(data) {
             "option" : opt
           })
         }
-        localStorage.setItem("id", JSON.stringify(panier));
+        localStorage.setItem("products", JSON.stringify(panier));
         localStorage.setItem("number", panier.length);
         document.location.reload(); //actualise le page
       }, false);

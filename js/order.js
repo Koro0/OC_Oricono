@@ -12,15 +12,12 @@ fetch('http://localhost:3000/api/teddies')
     console.log(err);
   })  
 
-  //Affichier le nombre de produit dans le panier
-  document.getElementById("basketCard").innerHTML = localStorage["number"];
-
   // affichier tous les produits du panier
   function showsOrder(data) {
     let articleOrder = document.getElementById("articleOrders");
     let ul = document.createElement('ul');
     ul.className = "ArtOrdersUl";
-    let orders = JSON.parse(localStorage["id"]);
+    let orders = JSON.parse(localStorage["products"]);
     let liSomme = document.createElement('div');
     liSomme.className = "totalAllArticle";
     let totalAllArticle = 0;
@@ -98,9 +95,8 @@ fetch('http://localhost:3000/api/teddies')
   // }
 
 
-  let linkValid = "http://localhost:3000/confimation.html"; 
-  document.querySelector('form').setAttribute('action', 'linkValid');
-  formValid.setAttribute('onclick', sendPost(); validForm());
+  document.querySelector('form').setAttribute('action', ajaxPost);
+ 
   ///////////////////recuperer les inputs du formulaire///////////
   const firstName = document.getElementById('cusFirstName');
   const lastName = document.getElementById('cusLastName');
@@ -109,26 +105,20 @@ fetch('http://localhost:3000/api/teddies')
   const userEmail = document.getElementById('cusEmail');
   const formValid = document.getElementById('validCommand');
 console.log(userCity.value);
-let contact = [{
-  "first name " : firstName.value, 
-  "lastName " : lastName.value,
-  "address " : userAddress.value,
-  "city" : userCity.value,
-  "email" : userEmail.value
-}];
+let contact = [];
 
-function sendPost() {
-  var req = new XMLHttpRequest();
-// La requête est asynchrone lorsque le 3ème paramètre vaut true ou est absent
-  req.open("POST", "http://localhost:3000/api/order");
-  // Gestion de l'événement indiquant la fin de la requête
-  req.addEventListener("load", function () {
-      // Affiche la réponse reçue pour la requête
-      console.log(req.responseText);
-  });
-    req.send(); 
+// function sendPost() {
+//   var req = new XMLHttpRequest();
+// // La requête est asynchrone lorsque le 3ème paramètre vaut true ou est absent
+//   req.open("POST", "http://localhost:3000/api/order");
+//   // Gestion de l'événement indiquant la fin de la requête
+//   req.addEventListener("load", function () {
+//       // Affiche la réponse reçue pour la requête
+//       console.log(req.responseText);
+//   });
+//     req.send(); 
     
-}
+// }
 
 
   /////////////////////////////Event sur click butt valider achat du formulaire/////////////////
@@ -182,7 +172,17 @@ function sendPost() {
       document.getElementById('errorEmail').textContent = "";
     }
 
+    contact.push({
+      "firstName " : firstName.value, 
+      "lastName " : lastName.value,
+      "address " : userAddress.value,
+      "city" : userCity.value,
+      "email" : userEmail.value
+    })
+    
   }; 
+
+  
 
 /*
 /////////////////////////// Verifier le champ Email//////////////////

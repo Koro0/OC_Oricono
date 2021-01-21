@@ -13,7 +13,17 @@ fetch('http://localhost:3000/api/teddies')
     console.log(err);
   })
 
-  document.getElementById("basketCard").innerHTML = localStorage["number"];
+//premier visite du site, creer le nombre dans le panier et actualiser la page
+window.onload = verifPanier;
+
+function verifPanier() {
+  if(localStorage['number'] == null) {
+      localStorage.setItem('number', 0);
+      document.location.reload();
+  }
+  
+}
+
 
   function shows(data) {
   let ul = document.createElement('ul');
